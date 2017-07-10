@@ -36,7 +36,7 @@ function isPrototypeOf(prototype, prototyped) {
 }
 
 tests({
-  'Returns true if the prototype is in the first layer': function () {
+	'Returns true if the prototype is in the first layer': function () {
 	var canine = {
 		bark: function() {
 			console.log('bark');
@@ -46,7 +46,7 @@ tests({
 	eq(isPrototypeOf(canine, dog), true);
   },
 
-  'Return true if the prototype is in the chain for 2 number of layers': function () {
+	'Return true if the prototype is in the chain for 2 number of layers': function () {
 	var canine = {
 	  bark: function() {
 		console.log('bark');
@@ -68,7 +68,7 @@ tests({
 	eq(isPrototypeOf(Object.prototype, myDog), true);
   },
 
-  'Return false if the prototyped is null ': function () {
+	'Return false if the prototyped is null ': function () {
 	var canine = {
 		bark: function() {
 			console.log('bark');
