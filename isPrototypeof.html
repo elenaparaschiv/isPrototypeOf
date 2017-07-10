@@ -37,57 +37,57 @@ function isPrototypeOf(prototype, prototyped) {
 
 tests({
 	'Returns true if the prototype is in the first layer': function () {
-	var canine = {
-		bark: function() {
-			console.log('bark');
-		}
-	};
-	var dog = Object.create(canine);
-	eq(isPrototypeOf(canine, dog), true);
+		var canine = {
+			bark: function() {
+				console.log('bark');
+			}
+		};
+		var dog = Object.create(canine);
+		eq(isPrototypeOf(canine, dog), true);
   },
 
 	'Return true if the prototype is in the chain for 2 number of layers': function () {
-	var canine = {
-	  bark: function() {
-		console.log('bark');
-	  }
-	};
-	var dog = Object.create(canine);
-	var myDog = Object.create(dog);
-	eq(isPrototypeOf(canine, myDog) , true);
+		var canine = {
+			bark: function() {
+			console.log('bark');
+			}
+		};
+		var dog = Object.create(canine);
+		var myDog = Object.create(dog);
+		eq(isPrototypeOf(canine, myDog) , true);
   },
 
 	'Return true if the prototype is in the chain for any number of layers': function () {
-	var canine = {
-	  bark: function() {
-		console.log('bark');
-	  }
-	};
-	var dog = Object.create(canine);
-	var myDog = Object.create(dog);
-	eq(isPrototypeOf(Object.prototype, myDog), true);
+		var canine = {
+			bark: function() {
+			console.log('bark');
+			}
+		};
+		var dog = Object.create(canine);
+		var myDog = Object.create(dog);
+		eq(isPrototypeOf(Object.prototype, myDog), true);
   },
 
 	'Return false if the prototyped is null ': function () {
-	var canine = {
-		bark: function() {
-			console.log('bark');
-		}
-	};
-	var dog = Object.create(canine);
-	var myDog = Object.create(dog);
-	var empty = Object.create(null);
-	eq(isPrototypeOf(dog, empty), false);
+		var canine = {
+			bark: function() {
+				console.log('bark');
+			}
+		};
+		var dog = Object.create(canine);
+		var myDog = Object.create(dog);
+		var empty = Object.create(null);
+		eq(isPrototypeOf(dog, empty), false);
   },
 
 	'It should throw a TypeError if prototypeObject is undefined or null': function() {
-	var isTypeError = false;
-	try {
-	  isPrototypeOf(null, {});
-	} catch (e) {
-	  isTypeError = (e instanceof TypeError);
-	}
-	eq(isTypeError, true);
+		var isTypeError = false;
+		try {
+			isPrototypeOf(null, {});
+		} catch (e) {
+			isTypeError = (e instanceof TypeError);
+		}
+		eq(isTypeError, true);
   }
 
 });
