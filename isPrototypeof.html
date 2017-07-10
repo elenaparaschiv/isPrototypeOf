@@ -43,7 +43,7 @@ tests({
 			}
 		};
 		var dog = Object.create(canine);
-    eq(isPrototypeOf(canine, dog), true);
+    	eq(isPrototypeOf(canine, dog), true);
   },
 
   'Return true if the prototype is in the chain for 2 number of layers': function () {
@@ -77,16 +77,16 @@ tests({
 		var dog = Object.create(canine);
 		var myDog = Object.create(dog);
 		var empty = Object.create(null);
-    eq(isPrototypeOf(dog, empty), false);
+    	eq(isPrototypeOf(dog, empty), false);
   },
 
 	'It should throw a TypeError if prototypeObject is undefined or null': function() {
 		var isTypeError = false;
-    try {
-      isPrototypeOf(null, {});
-    } catch (e) {
-      isTypeError = (e instanceof TypeError);
-    }
+		try {
+		  isPrototypeOf(null, {});
+		} catch (e) {
+		  isTypeError = (e instanceof TypeError);
+		}
 		eq(isTypeError, true);
   }
 
