@@ -28,11 +28,11 @@ function isPrototypeOf(prototype, prototyped) {
 	}
 
 	if (prototypedProto ===  prototype) {
-		 return true;
+		return true;
 
 	// Recursive case:
 	} else {
-			return isPrototypeOf(prototype, prototypedProto);
+		return isPrototypeOf(prototype, prototypedProto);
 	}
 
 }
