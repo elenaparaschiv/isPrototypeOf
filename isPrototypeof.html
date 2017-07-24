@@ -18,6 +18,7 @@
 function isPrototypeOf(prototype, prototyped) {
 	var prototypedProto = Object.getPrototypeOf(prototyped);
 
+	// Base cases:
 	if (prototype === null || prototype === undefined) {
 		throw new TypeError ("Prototype object is undefined or null");
 	}
@@ -25,66 +26,82 @@ function isPrototypeOf(prototype, prototyped) {
 	if (prototypedProto === null) {
 		return false;
 	}
-	
-	// Base case
+
 	if (prototypedProto ===  prototype) {
 		 return true;
 
+	// Recursive case:
 	} else {
-	// Recursive case
-		return isPrototypeOf(prototype, prototypedProto);
+			return isPrototypeOf(prototype, prototypedProto);
 	}
+
 }
 
+// Define variables to use in tests
+var canine;
+var dog;
+var myDog;
+var empty;
+
 tests({
-	'Returns true if the prototype is in the first layer': function () {
-		var canine = {
+	'Should return true if the prototype is in the first layer': function () {
+		canine = {
 			bark: function() {
 				console.log('bark');
 			}
 		};
-		var dog = Object.create(canine);
+		dog = Object.create(canine);
 		eq(isPrototypeOf(canine, dog), true);
   },
 
-	'Return true if the prototype is in the chain for 2 number of layers': function () {
-		var canine = {
+	'Should return true if the prototype is in the chain for 2 number of layers': function () {
+		canine = {
 			bark: function() {
 			console.log('bark');
 			}
 		};
-		var dog = Object.create(canine);
-		var myDog = Object.create(dog);
+		dog = Object.create(canine);
+		myDog = Object.create(dog);
 		eq(isPrototypeOf(canine, myDog) , true);
   },
 
-	'Return true if the prototype is in the chain for any number of layers': function () {
-		var canine = {
+	'Should return true if the prototype is in the chain for any number of layers': function () {
+		 canine = {
 			bark: function() {
 			console.log('bark');
 			}
 		};
-		var dog = Object.create(canine);
-		var myDog = Object.create(dog);
+		dog = Object.create(canine);
+		myDog = Object.create(dog);
 		eq(isPrototypeOf(Object.prototype, myDog), true);
   },
 
-	'Return false if the prototyped is null ': function () {
-		var canine = {
+	'Should return false if the prototype of the prototyped is null': function () {
+		canine = {
 			bark: function() {
 				console.log('bark');
 			}
 		};
-		var dog = Object.create(canine);
-		var myDog = Object.create(dog);
-		var empty = Object.create(null);
+		dog = Object.create(canine);
+		myDog = Object.create(dog);
+		empty = Object.create(null);
 		eq(isPrototypeOf(dog, empty), false);
   },
 
-	'It should throw a TypeError if prototypeObject is undefined or null': function() {
+	'Should throw a TypeError if prototypeObject is null': function() {
 		var isTypeError = false;
 		try {
 			isPrototypeOf(null, {});
+		} catch (e) {
+			isTypeError = (e instanceof TypeError);
+		}
+		eq(isTypeError, true);
+  },
+
+	'Should throw a TypeError if prototypeObject is undefined': function() {
+		var isTypeError = false;
+		try {
+			isPrototypeOf(undefined, {});
 		} catch (e) {
 			isTypeError = (e instanceof TypeError);
 		}
